@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T18:51Z",
+  "updated": "2026-11-24T18:57Z",
   "waiting_on": [
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
@@ -38,43 +38,47 @@
   "videos": [
     {
       "slug": "01-what-it-is",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.41 ed34781"
     },
     {
       "slug": "02-today-and-actions",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.41 ed34781"
     },
     {
       "slug": "03-follow-ups",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.41 ed34781"
     },
     {
       "slug": "04-import",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.41 ed34781"
     },
     {
       "slug": "05-agents-in-parallel",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
     },
     {
       "slug": "06-log-in",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
     },
     {
       "slug": "07-verified-keys",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
     },
     {
       "slug": "08-requests",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
     },
     {
       "slug": "09-outbox",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
     },
     {
       "slug": "10-for-you",
-      "site_version": "v0.1.39 f0b0f69"
+      "site_version": "v0.1.42 212ba88"
+    },
+    {
+      "slug": "11-add-people",
+      "site_version": "v0.1.41 ed34781"
     }
   ],
   "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro",
