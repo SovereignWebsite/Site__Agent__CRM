@@ -37,9 +37,15 @@ await p.addInitScript((seed) => { let s = seed >>> 0; const r = () => { s = (Mat
 // A script may mask what changes every run or should not be shown (a made-up person's fresh key, its QR code):
 // the mask is a flat box drawn over those elements in the screenshot, so nothing of them is kept.
 const MASK = S.mask || [];
-const still = async () => { await p.evaluate(() => document.activeElement?.blur?.());
+// redact: inside these elements, every fingerprint-like run of hex (8 or more) is shown as dots in the screenshot,
+// where a whole mask would hide too much (a badge that says "Verified key ✓ 1a2b3c4d" keeps its words).
+const REDACT = S.redact || [];
+const redact = async () => { if (REDACT.length) await p.evaluate((sels) => { for (const sel of sels) for (const el of document.querySelectorAll(sel)) {
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n; (n = w.nextNode());) n.nodeValue = n.nodeValue.replace(/[0-9a-f]{8,}/g, '••••••••');
+    if (el.title) el.title = el.title.replace(/[0-9a-f]{8,}/g, '••••••••'); } }, REDACT); };
+const still = async () => { await p.evaluate(() => document.activeElement?.blur?.()); await redact();
   return p.screenshot({ caret: 'hide', animations: 'disabled', mask: MASK.map((m) => p.locator(m)), maskColor: '#c9cec8' }); };
-const settle = async (i) => { let shot = await still(); for (let n = 0; ; n++) { await p.waitForTimeout(300); const next = await still(); if (next.equals(shot)) return shot; shot = next;
+const settle = async (i) => { let shot = await still(), same = 0; for (let n = 0; ; n++) { await p.waitForTimeout(300); const next = await still(); if (next.equals(shot)) { if (++same === 2) return shot; } else same = 0; shot = next;
   if (n > 20) throw new Error(`scene ${i + 1}: the page never settled`); } };
 
 let version = null; const screens = new Map(); const out = [];
@@ -54,6 +60,13 @@ for (const [i, sc] of S.scenes.entries()) {
     if (a.fill) await p.locator(a.fill[0]).first().fill(a.fill[1]);
     if (a.select) await p.locator(a.select[0]).first().selectOption(a.select[1]);
     if (a.wait) await p.locator(a.wait).first().waitFor({ timeout: 60000 }); // e.g. a key being made
+    // keyfrom: a second made-up person logs in, in a separate browser context, and their PUBLIC key text (the
+    // You page's #mykey, the same as their QR code) is pasted into a field here. That context is thrown away.
+    if (a.keyfrom) { const other = await b.newContext({ locale: 'en-GB', timezoneId: 'UTC' });
+      await other.route('**/*', (r) => { const u = new URL(r.request().url()); return (u.protocol === 'data:' || ALLOW.has(u.host)) ? r.continue() : r.abort(); });
+      const q = await other.newPage(); await q.goto(`${S.base}/app/#/me`, { waitUntil: 'networkidle' });
+      await q.fill('#li-name', a.keyfrom.name); await q.click('main button:has-text("Log in")'); await q.locator('#mykey').waitFor({ timeout: 60000 });
+      const text = await q.inputValue('#mykey'); await other.close(); await p.locator(a.keyfrom.into).first().fill(text); }
     if (a.scroll) await p.locator(a.scroll).first().scrollIntoViewIfNeeded();
     if (a.top) await p.evaluate(() => window.scrollTo(0, 0));
     await p.waitForLoadState('networkidle'); await p.waitForTimeout(400);
@@ -62,6 +75,7 @@ for (const [i, sc] of S.scenes.entries()) {
   if (sc.mark) { const l = p.locator(sc.mark).first(); if (!sc.stay) await l.scrollIntoViewIfNeeded();
     if (sc.scroll_by) await p.evaluate((y) => window.scrollBy({ top: y, behavior: 'instant' }), sc.scroll_by);
     for (let last = -1, n = 0; n < 40; n++) { const y = await p.evaluate(() => window.scrollY); if (y === last) break; last = y; await p.waitForTimeout(100); }
+    await redact(); // measure what will be shown
     const r = await l.boundingBox(); if (!r) throw new Error(`scene ${i + 1}: nothing to mark at ${sc.mark}`);
     // Whole pixels, kept inside the screen, so the box is the same in every capture.
     const x = Math.max(Math.round(r.x), 4), y = Math.max(Math.round(r.y), 4);
