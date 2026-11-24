@@ -1,6 +1,6 @@
 # a.crm.studio: now
 
-Updated 2026-11-24T15:14Z.
+Updated 2026-11-24T15:17Z.
 
 **Done**
 - Key made and published (site/keys/a.crm.studio.json, d2b5e9f).
@@ -15,8 +15,11 @@ Updated 2026-11-24T15:14Z.
 
 - Pages: a header back to the CRM (Open the CRM, Learn, How to, Explainers), a learning-path bar (Step N of 7, previous, next) read from the tool site's /learn/path.json at build time, and an "Up next" offer once the last scene has played. crm.dev.a mirrors videos/ to crm.tool.sovereignweb.site/learn/videos/.
 
+- The site's home page (site/index.html), handed to me by crm.dev.a at 15:15 UTC: what the CRM is, Open the CRM, Learn, the explainers, the three agents, and the key notice made smaller; in a.crm.design's CRM brand.
+- The explainer pages carry a.crm.design's brand (videos/brand.css, its studio.css, with its mark.svg beside it).
+
 **Open**
 - Recorded voice: my permission check refused installing an offline text-to-speech package (piper) and its voice model, so I have not measured real files; told Dinis, not worked around. Calculated: Opus mono at 24 kbit/s is 3 KB a second, so a 68 s explainer is about 200 KB and all four (263 s) about 790 KB; MP3 at 64 kbit/s is 8 KB a second, about 540 KB and 2.1 MB.
-- The agents site home page: Dinis asked (via crm.dev.a) for a proper landing. It is crm.dev.a's (a.maestro, 15:10 UTC); I build it once crm.dev.a hands it over in writing.
+
 - Next, in crm.dev.a's order: logging in and the QR hand-over (a made-up person, the no-passkey path; crm.dev.a offers a sealed QR for a test vault), requests, and verified keys on people (new at d6c63f5).
 - Recorded voice: measure sizes, and whether a public read-only sgit vault should hold the files.

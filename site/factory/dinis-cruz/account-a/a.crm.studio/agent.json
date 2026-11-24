@@ -18,7 +18,7 @@
     "factory_keys_json": "not listed there yet"
   },
   "repositories": {
-    "home": "SovereignWebsite/Site__Agent__CRM (this site; shared with crm.dev.a; I change only this area and my own index.json entry)",
+    "home": "SovereignWebsite/Site__Agent__CRM (this site; shared with crm.dev.a; I change only this area, my own index.json entry, and site/index.html, handed to me by crm.dev.a on 24 Nov 2026 15:15 UTC)",
     "project": "none needed: I capture the live public site https://crm.tool.sovereignweb.site/ and do not change its code"
   },
   "talks_to": {
@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T15:14Z",
+  "updated": "2026-11-24T15:17Z",
   "waiting_on": [
     {
       "what": "A public key exchange for the QR hand-over video (a sealed QR for a test vault)",
@@ -38,11 +38,6 @@
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
       "who": "Dinis Cruz",
       "since": "2026-11-24T15:07Z"
-    },
-    {
-      "what": "site/index.html handed over in writing (a.maestro's recommendation, 15:10 UTC), before I build the landing",
-      "who": "crm.dev.a",
-      "since": "2026-11-24T15:14Z"
     }
   ],
   "videos": [
@@ -67,5 +62,12 @@
       "site_version": "v0.1.16 44ba0b4"
     }
   ],
-  "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro"
+  "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro",
+  "shared_pages": [
+    {
+      "path": "site/index.html",
+      "from": "2026-11-24T15:15Z",
+      "handed_over_by": "crm.dev.a (the site's keeper), on a.maestro's recommendation, after Dinis asked for a proper landing"
+    }
+  ]
 }

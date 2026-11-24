@@ -31,9 +31,10 @@ const head = ({ title, desc, url, img, alt, depth }) => `<!doctype html>
 <link rel="canonical" href="${url}">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'">
 <link rel="stylesheet" href="${depth}player.css">
+<link rel="stylesheet" href="${depth}brand.css">
 <style>
-:root{--bg:#f7f7f5;--fg:#1d1d1b;--muted:#5f5f5a;--line:#deded8;--accent:#0b5cad}
-@media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ededea;--muted:#a8a8a2;--line:#33332f;--accent:#7ab8ff}}
+:root{--bg:#fbfaf7;--fg:#1b1c1a;--muted:#5b6460;--line:#dcd9d0;--accent:#1f5446}
+@media (prefers-color-scheme:dark){:root{--bg:#121513;--fg:#e9ece6;--muted:#a3aca7;--line:#303733;--accent:#7cc4ab}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,sans-serif}
 main{max-width:60rem;margin:0 auto;padding:5vh 1rem 4rem}.kick{font:600 .78rem/1 system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 h1{font-size:clamp(1.8rem,5vw,2.5rem);line-height:1.1;margin:.6rem 0 1rem}p,li{color:var(--muted)}a{color:var(--accent)}
@@ -63,7 +64,7 @@ const titleOf = (x) => x.video ? JSON.parse(readFileSync(`videos/${x.video}/scen
 const hrefOf = (x, fromVideo) => x.video ? (fromVideo ? `../${x.video}/` : `${x.video}/`) : x.url;
 for (const slug of vids) {
   const k = PATH.findIndex((x) => x.video === slug), prevStep = k > 0 ? PATH[k - 1] : null, nextStep = k >= 0 && k < PATH.length - 1 ? PATH[k + 1] : null;
-  const learn = k < 0 ? '' : `<nav class="learn" aria-label="Learning path"><span>Step ${k + 1} of ${PATH.length}</span>${prevStep ? `<a href="${esc(hrefOf(prevStep, true))}">← ${esc(titleOf(prevStep))}</a>` : ''}${nextStep ? `<a href="${esc(hrefOf(nextStep, true))}">Next: ${esc(titleOf(nextStep))} →</a>` : ''}</nav>`;
+  const learn = k < 0 ? '' : `<nav class="learn learn-nav" aria-label="Learning path"><span>Step ${k + 1} of ${PATH.length}</span>${prevStep ? `<a href="${esc(hrefOf(prevStep, true))}">← ${esc(titleOf(prevStep))}</a>` : ''}${nextStep ? `<a href="${esc(hrefOf(nextStep, true))}">Next: ${esc(titleOf(nextStep))} →</a>` : ''}</nav>`;
   const d = JSON.parse(readFileSync(`videos/${slug}/scenes.json`, 'utf8'));
   const S = JSON.parse(readFileSync(`videos/${slug}/script.json`, 'utf8')); const first = d.scenes[S.share ?? -1]?.screen ? d.scenes[S.share] : d.scenes.find((s) => s.screen); card(`videos/${slug}/${first.screen}`, `videos/${slug}/share.jpg`);
   const desc = `${d.title}: a ${Math.round(d.seconds / 60) || 1}-minute explainer of the CRM, played in your browser from its demo mode (synthetic data only).`;
