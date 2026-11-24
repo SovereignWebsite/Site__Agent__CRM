@@ -38,35 +38,35 @@
   "videos": [
     {
       "slug": "01-what-it-is",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "02-today-and-actions",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "03-follow-ups",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "04-import",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "05-agents-in-parallel",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "06-log-in",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "07-verified-keys",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     },
     {
       "slug": "08-requests",
-      "site_version": "v0.1.29 8067a4a"
+      "site_version": "v0.1.30 278d1c5"
     }
   ],
   "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro",
