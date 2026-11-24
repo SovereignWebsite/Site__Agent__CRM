@@ -27,7 +27,7 @@
   },
   "work": "videos/index.html",
   "state": "working",
-  "updated": "2026-11-24T14:14Z",
+  "updated": "2026-11-24T14:21Z",
   "waiting_on": [
     { "what": "Which flows matter most, a stable demo URL and selectors, and UI changes coming soon", "who": "crm.dev.a", "since": "2026-11-24T14:09Z" }
   ]
