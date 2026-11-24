@@ -41,8 +41,9 @@ let version = null; const screens = new Map(); const out = [];
 for (const [i, sc] of S.scenes.entries()) {
   const scene = { caption: sc.caption, seconds: sc.seconds };
   if (sc.card) { out.push({ ...scene, card: sc.card }); continue; } // cards are drawn by the player, not captured
+  if (sc.diagram) { out.push({ ...scene, diagram: sc.diagram }); continue; } // so are diagrams: the ids to light up
   for (const a of sc.do || []) {
-    if (a.goto) await p.goto(S.base + a.goto, { waitUntil: 'networkidle' });
+    if (a.goto) await p.goto(/^https:/.test(a.goto) ? a.goto : S.base + a.goto, { waitUntil: 'networkidle' });
     if (a.hash) await p.evaluate((h) => { location.hash = h; }, a.hash); // in-page: keeps the demo's writes in this tab
     if (a.click) await p.locator(a.click).first().click();
     if (a.fill) await p.locator(a.fill[0]).first().fill(a.fill[1]);
@@ -51,7 +52,7 @@ for (const [i, sc] of S.scenes.entries()) {
     if (a.top) await p.evaluate(() => window.scrollTo(0, 0));
     await p.waitForLoadState('networkidle'); await p.waitForTimeout(400);
   }
-  if (!version) version = await p.evaluate(() => (document.body.innerText.match(/v\d+\.\d+\.\d+ · [0-9a-f]{7} · \d{4}-\d\d-\d\d/) || [null])[0]);
+  if (!version && p.url().startsWith(S.base)) version = await p.evaluate(() => (document.body.innerText.match(/v\d+\.\d+\.\d+ · [0-9a-f]{7} · \d{4}-\d\d-\d\d/) || [null])[0]);
   if (sc.mark) { const l = p.locator(sc.mark).first(); if (!sc.stay) await l.scrollIntoViewIfNeeded();
     if (sc.scroll_by) await p.evaluate((y) => window.scrollBy({ top: y, behavior: 'instant' }), sc.scroll_by);
     for (let last = -1, n = 0; n < 40; n++) { const y = await p.evaluate(() => window.scrollY); if (y === last) break; last = y; await p.waitForTimeout(100); }
@@ -68,7 +69,7 @@ for (const [i, sc] of S.scenes.entries()) {
 await b.close(); rmSync(tmp, { recursive: true, force: true });
 
 const data = { slug: S.slug, title: S.title, site: S.base, site_version: version, clock: S.clock, width: W, height: H,
-  seconds: out.reduce((t, s) => t + s.seconds, 0), presenter: S.presenter || 'Studio', scenes: out };
+  seconds: out.reduce((t, s) => t + s.seconds, 0), presenter: S.presenter || 'Studio', ...(S.diagram ? { diagram: S.diagram } : {}), scenes: out };
 writeFileSync(join(dir, 'scenes.json'), JSON.stringify(data, null, 1) + '\n');
 writeFileSync(join(dir, 'manifest.json'), JSON.stringify({ slug: S.slug, site_version: version, clock: S.clock, scenes: out.length,
   screens: Object.fromEntries([...screens].map(([id, h]) => [`s-${id}.webp`, h])), scenes_json_sha256: sha(readFileSync(join(dir, 'scenes.json'))),
