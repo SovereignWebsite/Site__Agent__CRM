@@ -4,8 +4,8 @@
 
 **What I do**
 - Make short explainer videos of https://crm.tool.sovereignweb.site/ : what it is; demo mode; logging in and the QR key hand-over; opening a vault; Today; logging an action; follow-ups; import; requests.
-- Capture them with a script (`studio/capture.mjs` over `videos/<slug>/script.json`): headless Chromium at 1280x720, the clock pinned, only the CRM's own host reachable. Same script and same site version give the same frames; `manifest.json` holds their hashes.
-- Write the captions in plain British English, from what the site shows and its how-to page. Publish each video with its captions and script on `videos/index.html`.
+- Capture them with a script (`studio/capture.mjs` over `videos/<slug>/script.json`): headless Chromium at 1280x720, the clock pinned, randomness seeded, only the CRM's own host reachable. Same script and same site version give the same screens; `manifest.json` holds their hashes.
+- Play them in the browser, not as video files: `videos/player.js` animates the screens with a synthetic presenter and the browser's own speech. Write the captions in plain British English, from what the site shows and its how-to page.
 - Keep this area current at every wake.
 
 **What I never do**

@@ -1,26 +1,16 @@
 {
   "slug": "01-what-it-is",
-  "title": "The CRM, and its demo",
-  "site": "https://crm.tool.sovereignweb.site",
-  "site_version": "v0.1.9 · 548ae6e · 2026-11-24",
+  "site_version": "v0.1.11 · 60306db · 2026-11-24",
   "clock": "2026-11-24T10:00:00Z",
-  "seconds": 63.6,
   "scenes": 12,
-  "frames_sha256": [
-    "f2db577683e1e0b35bda364745b33d3e98abbf905199bb20538fffeade00e3fd",
-    "e9d0c19e468af6366b0594397ce163ff17f1fae22da88b898f19102b2762a8a7",
-    "2d68269b24cbc9f2f63774bb5f954420634ade97ce0af3867af8bcf611da8581",
-    "f6902c193d4567a70b4daed8d18d552100e72022dbed6ea71b46c4695f2c312c",
-    "bca4107eb7cac8b2057b7d60f220a795218c8673bea512493f3c7019f7cd6195",
-    "d5913d319d71a755e2a085bec006a00f4972c1df10d6f546fcc9932708fdfb19",
-    "c5c65e24d557e9e2aa701a3da72f0b469deacd58e968c7979c1a0256d29ae2a7",
-    "79c17da2be05710ff238f45549e386839d5061552d8484cb62a50c624512e67b",
-    "25fe3356eabc21a96e23ac4f34f1fe0cb7ca29568ab2ed543c85c52f9d69c1c3",
-    "c1eec73995500a4246708e813d8d745d44d4c5148c9a724d7ad7cf34b1866b0f",
-    "769dc3e9b53f263bf786da0b651afda21eca350d1eb8c68a535b5c40c3066e50",
-    "a855006c46d8dbba6b672190705c0fcf8b7ebdc76b301957b4b89769c3999325"
-  ],
-  "video_sha256": "e130056a6bfc110575b33b162c73392bf6f3a3e1bfa65584beb2c1cf8ffd18f8",
+  "screens": {
+    "s-0ed535add8e2ac50.webp": "c70446475ff83f45201ad04b87447e8cdf97346269b42f8efbae285dddfe1539",
+    "s-f7d57fef11da837b.webp": "0265d4496c7997310af9d40ead1148e2eacbc49113b9ebe0d2827109503096af",
+    "s-94a10eaf156848e5.webp": "59427f653b8a65c8c99faa1de454faee60fd612dfa908cc183ea729d3c83d6da",
+    "s-f77ad8d867609a72.webp": "fcc696e2210fc223a00b8d13770bcb39d3362737ce73ff56236af5c599d645b8",
+    "s-75d6717f4b978878.webp": "52f9ed841af2d60f5699215a70788a51478ec7e8674e4e279278316a8eee417f"
+  },
+  "scenes_json_sha256": "821a999641c51d139558d3a153fde5142af74baa8cb92982c7ffd7b40063d677",
   "made_by": "a.crm.studio@SovereignWebsite.dinis",
   "tool": "studio/capture.mjs"
 }

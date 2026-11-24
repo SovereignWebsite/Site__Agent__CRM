@@ -25,24 +25,33 @@
     "crm.dev.a": "session_018yvwtNP466yYif3yWt3Ybr (builds the CRM)",
     "a.maestro": "session_018yvwtLiem1AqdA1YkKse4h (routing, wake)"
   },
-  "work": "videos/index.html",
+  "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T14:43Z",
+  "updated": "2026-11-24T14:55Z",
   "waiting_on": [
     {
-      "what": "Whether Follow-ups should clear when a reply or new outreach is logged (blocks the follow-ups video)",
+      "what": "A public key exchange for the QR hand-over video (a sealed QR for a test vault)",
       "who": "crm.dev.a",
-      "since": "2026-11-24T14:30Z"
+      "since": "2026-11-24T14:55Z"
+    },
+    {
+      "what": "Confirmation in this session of the feedback relayed from Dinis (player not MP4, voice, look, a video on agents working in parallel)",
+      "who": "Dinis Cruz",
+      "since": "2026-11-24T14:55Z"
     }
   ],
   "videos": [
     {
       "slug": "01-what-it-is",
-      "site_version": "v0.1.9 548ae6e"
+      "site_version": "v0.1.11 60306db"
     },
     {
       "slug": "02-today-and-actions",
-      "site_version": "v0.1.9 548ae6e"
+      "site_version": "v0.1.11 60306db"
+    },
+    {
+      "slug": "03-follow-ups",
+      "site_version": "v0.1.11 60306db"
     }
   ]
 }

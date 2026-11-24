@@ -3,7 +3,6 @@
   "title": "The CRM, and its demo",
   "base": "https://crm.tool.sovereignweb.site",
   "clock": "2026-11-24T10:00:00Z",
-  "poster": 0,
   "scenes": [
     {
       "card": {
@@ -116,5 +115,6 @@
       "caption": "That is the demo. Next: logging in and opening a vault.",
       "seconds": 6
     }
-  ]
+  ],
+  "share": 7
 }

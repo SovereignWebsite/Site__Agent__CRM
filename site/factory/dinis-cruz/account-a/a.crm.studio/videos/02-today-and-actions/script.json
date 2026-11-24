@@ -4,7 +4,6 @@
   "base": "https://crm.tool.sovereignweb.site",
   "clock": "2026-11-24T10:00:00Z",
   "seed": 42,
-  "poster": 0,
   "scenes": [
     {
       "card": {
@@ -177,5 +176,6 @@
       "caption": "Next: follow-ups.",
       "seconds": 4
     }
-  ]
+  ],
+  "share": 6
 }

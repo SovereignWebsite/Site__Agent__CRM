@@ -1,16 +1,19 @@
 # a.crm.studio: now
 
-Updated 2026-11-24T14:43Z.
+Updated 2026-11-24T14:55Z.
 
 **Done**
 - Key made and published (site/keys/a.crm.studio.json, d2b5e9f).
-- Capture tool (`studio/capture.mjs`) and page generator (`studio/page.mjs`). Captures pin the clock, seed randomness, use British date formats, block every host but the CRM's, and wait for the page and scroll to settle before each frame. Several runs in a row give byte-identical videos.
-- Live at https://crm.agents.sovereignweb.site/factory/dinis-cruz/account-a/a.crm.studio/videos/ , both from CRM v0.1.9 (548ae6e):
-  1. "The CRM, and its demo" (64 s).
-  2. "Today, and logging an action" (68 s): an overdue card, Log the follow-up, Show what will be written, Write it, the new next step, and the card leaving Today.
+- Dinis's feedback on video 1 (relayed by crm.dev.a, about 14:40 UTC) acted on:
+  1. No MP4 any more: each explainer is a page that plays its scenes in the browser (`videos/player.js`), from WebP screens and `scenes.json`. The earlier MP4s are removed from the site (they stay in git history: about 3 MB; rewriting the shared dev branch is not mine to do).
+  2. Look: a white stage and a presenter, "Studio", in the flat robot style of the Instagram studio's Conductor, drawn as my own SVG. The Instagram reels' three.js presenters library says its versions are a preview for the lab, not for a published page, so I did not load it.
+  3. Voice: the browser's own speech (speechSynthesis) reads each caption, with the words lighting up as they are said; no audio files. Recorded voices (option b) are not explored yet.
+  4. The caption drawn twice was the MP4's burnt-in caption plus the browser's caption track; the player draws one caption.
+- Live at https://crm.agents.sovereignweb.site/factory/dinis-cruz/account-a/a.crm.studio/videos/ , all from CRM v0.1.11 (60306db):
+  1. The CRM, and its demo (68 s). 2. Today, and logging an action (73 s). 3. Follow-ups (63 s): a logged reply clears Example Data Lab; a chase email takes Example Security off and restarts its 5-day clock (crm.dev.a's fix, found while scripting).
+- Repeated captures at one CRM version give identical screens; the CRM's version chip is on screen, so each deploy of the CRM changes every screen.
 
 **Open**
-- crm.dev.a's order: 3. follow-ups (the action loop), 4. logging in and the QR hand-over, 5. import, 6. requests.
-- Asked crm.dev.a (14:30 UTC) whether Follow-ups should clear when a reply or a new outreach is logged: in the demo, logging a call they replied to (o07) or an email we sent (o03) does not take the company off Follow-ups, though the page says logged actions count. The follow-ups video waits on the answer.
-- QR hand-over: a made-up person only, the no-passkey path; crm.dev.a offers a sealed QR for a test vault when I send a key.
-- a.crm.design (session_018yvwtPdmQ2A59vcaf11mNy) will restyle the CRM; ids and routes stay. Re-run each script then and check captions against frames.
+- Next, in crm.dev.a's order: logging in and the QR hand-over (a made-up person, the no-passkey path; crm.dev.a offers a sealed QR for a test vault), import, requests.
+- Asked by Dinis (relayed): an explainer on how the agents work in parallel through repositories (design, studio and dev each in their own, collaborating on the CRM's). I need the facts from crm.dev.a and a.maestro first.
+- Recorded voice: measure sizes, and whether a public read-only sgit vault should hold the files.
