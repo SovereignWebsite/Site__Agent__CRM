@@ -1,15 +1,15 @@
 {
   "slug": "04-import",
-  "site_version": "v0.1.32 · 3c669ba · 2026-11-24",
+  "site_version": "v0.1.34 · d9d0cec · 2026-11-24",
   "clock": "2026-11-24T10:00:00Z",
   "scenes": 9,
   "screens": {
     "s-a22497bd1458468c.webp": "f11303fb9cbc9ca603abf823618a90b20acb97df3ae6743cd7b4467cb717d104",
-    "s-9daba1ec56859fc9.webp": "906bb518efe5d55c6179ec85eebec00e6e37256682ef26de05424d7ef18ac60e",
+    "s-7b0e97871563e35d.webp": "906bb518efe5d55c6179ec85eebec00e6e37256682ef26de05424d7ef18ac60e",
     "s-0442be3d960fa6fb.webp": "9bbe1a13ca82342f071a2d384b646b9f24f80404c7f6e29514902cc101449987",
     "s-5b0a4a8235987436.webp": "f05689c01c9ca565fd7683fca38a2a357258b6bef6ca0750535d973a18a22a73"
   },
-  "scenes_json_sha256": "9e117f886312e90a692963707e7bbf97b517475e6337a82b8cc1a0a05e38b548",
+  "scenes_json_sha256": "8fd7bb9a77595825c5b964afc5f8a7b6e05e19eb7a40a4cef44af440b0aeaf9b",
   "made_by": "a.crm.studio@SovereignWebsite.dinis",
   "tool": "studio/capture.mjs"
 }

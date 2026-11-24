@@ -21,14 +21,23 @@ const sha = (b) => createHash('sha256').update(b).digest('hex');
 const tmp = mkdtempSync(join(tmpdir(), 'crm-studio-'));
 for (const f of readdirSync(dir)) if (/^s-[0-9a-f]+\.webp$/.test(f)) rmSync(join(dir, f)); // old screens go; this run writes its own
 
-const b = await chromium.launch({ args: ['--lang=en-GB'], env: { ...process.env, LANG: 'en_GB.UTF-8', LANGUAGE: 'en_GB' } }); // dates as 23/11/2026
-const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' });
+const LAUNCH = { args: ['--lang=en-GB'], env: { ...process.env, LANG: 'en_GB.UTF-8', LANGUAGE: 'en_GB' } }; // dates as 23/11/2026
+const CTX = { viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' };
+// profile: a script that needs the same browser key every run (a decision sealed to it) uses a persistent browser
+// profile, whose folder is given in STUDIO_PROFILE (in the session's scratchpad, never in this repository).
+let b, ctx;
+if (S.profile) { const dirp = process.env.STUDIO_PROFILE; if (!dirp) { console.error(`${S.slug}: set STUDIO_PROFILE to its browser profile folder (see restart.md)`); process.exit(2); }
+  ctx = await chromium.launchPersistentContext(dirp, { ...LAUNCH, ...CTX }); b = { newContext: (o) => chromium.launch(LAUNCH).then((x) => x.newContext(o)), close: () => ctx.close() }; }
+else { b = await chromium.launch(LAUNCH); ctx = await b.newContext(CTX); }
 // Only reads leave the browser: GETs to the allowed hosts. Any POST, PUT or DELETE (a request to the keeper, a
 // vault write) is aborted, so a capture can never send or write anything, whatever a script clicks.
 const SAFE = (r) => { const q = r.request(), u = new URL(q.url()); return (u.protocol === 'data:' || (ALLOW.has(u.host) && ['GET', 'HEAD'].includes(q.method()))) ? r.continue() : r.abort(); };
 await ctx.route('**/*', SAFE);
+// fixtures: answer some GETs from files beside the script (e.g. a decision sealed to the profile's key).
+for (const [glob, file] of Object.entries(S.fixtures || {})) await ctx.route(glob, (r) => r.request().method() === 'GET'
+  ? r.fulfill({ contentType: 'application/json', body: readFileSync(join(dir, file), 'utf8') }) : r.abort());
 if (S.permissions) await ctx.grantPermissions(S.permissions, { origin: S.base });
-const p = await ctx.newPage();
+const p = ctx.pages()[0] || await ctx.newPage();
 await p.clock.setFixedTime(new Date(S.clock || '2026-11-24T10:00:00Z'));
 // Seeded randomness, so ids the app makes for demo writes (a-xxxxxxxx) are the same in every capture.
 await p.addInitScript((seed) => { let s = seed >>> 0; const r = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
