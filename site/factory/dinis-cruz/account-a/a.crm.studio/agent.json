@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T14:55Z",
+  "updated": "2026-11-24T15:00Z",
   "waiting_on": [
     {
       "what": "A public key exchange for the QR hand-over video (a sealed QR for a test vault)",
@@ -52,6 +52,11 @@
     {
       "slug": "03-follow-ups",
       "site_version": "v0.1.11 60306db"
+    },
+    {
+      "slug": "04-import",
+      "site_version": "v0.1.11 60306db"
     }
-  ]
+  ],
+  "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro"
 }
