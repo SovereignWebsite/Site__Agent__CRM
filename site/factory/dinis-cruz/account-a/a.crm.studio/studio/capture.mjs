@@ -44,8 +44,8 @@ const MASK = S.mask || [];
 // where a whole mask would hide too much (a badge that says "Verified key ✓ 1a2b3c4d" keeps its words).
 const REDACT = S.redact || [];
 const redact = async () => { if (REDACT.length) await p.evaluate((sels) => { for (const sel of sels) for (const el of document.querySelectorAll(sel)) {
-    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n; (n = w.nextNode());) n.nodeValue = n.nodeValue.replace(/[0-9a-f]{8,}/g, '••••••••');
-    if (el.title) el.title = el.title.replace(/[0-9a-f]{8,}/g, '••••••••'); } }, REDACT); };
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n; (n = w.nextNode());) n.nodeValue = n.nodeValue.replace(/(?=[0-9a-f]*[a-f])[0-9a-f]{8,}/g, '••••••••');
+    if (el.title) el.title = el.title.replace(/(?=[0-9a-f]*[a-f])[0-9a-f]{8,}/g, '••••••••'); } }, REDACT); };
 const still = async () => { await p.evaluate(() => document.activeElement?.blur?.()); await redact();
   return p.screenshot({ caret: 'hide', animations: 'disabled', mask: MASK.map((m) => p.locator(m)), maskColor: '#c9cec8' }); };
 const settle = async (i) => { let shot = await still(), same = 0; for (let n = 0; ; n++) { await p.waitForTimeout(300); const next = await still(); if (next.equals(shot)) { if (++same === 2) return shot; } else same = 0; shot = next;
