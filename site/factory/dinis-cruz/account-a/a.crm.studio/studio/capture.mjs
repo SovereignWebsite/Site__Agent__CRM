@@ -23,7 +23,10 @@ for (const f of readdirSync(dir)) if (/^s-[0-9a-f]+\.webp$/.test(f)) rmSync(join
 
 const b = await chromium.launch({ args: ['--lang=en-GB'], env: { ...process.env, LANG: 'en_GB.UTF-8', LANGUAGE: 'en_GB' } }); // dates as 23/11/2026
 const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' });
-await ctx.route('**/*', (r) => { const u = new URL(r.request().url()); return (u.protocol === 'data:' || ALLOW.has(u.host)) ? r.continue() : r.abort(); });
+// Only reads leave the browser: GETs to the allowed hosts. Any POST, PUT or DELETE (a request to the keeper, a
+// vault write) is aborted, so a capture can never send or write anything, whatever a script clicks.
+const SAFE = (r) => { const q = r.request(), u = new URL(q.url()); return (u.protocol === 'data:' || (ALLOW.has(u.host) && ['GET', 'HEAD'].includes(q.method()))) ? r.continue() : r.abort(); };
+await ctx.route('**/*', SAFE);
 if (S.permissions) await ctx.grantPermissions(S.permissions, { origin: S.base });
 const p = await ctx.newPage();
 await p.clock.setFixedTime(new Date(S.clock || '2026-11-24T10:00:00Z'));
@@ -63,7 +66,7 @@ for (const [i, sc] of S.scenes.entries()) {
     // keyfrom: a second made-up person logs in, in a separate browser context, and their PUBLIC key text (the
     // You page's #mykey, the same as their QR code) is pasted into a field here. That context is thrown away.
     if (a.keyfrom) { const other = await b.newContext({ locale: 'en-GB', timezoneId: 'UTC' });
-      await other.route('**/*', (r) => { const u = new URL(r.request().url()); return (u.protocol === 'data:' || ALLOW.has(u.host)) ? r.continue() : r.abort(); });
+      await other.route('**/*', SAFE);
       const q = await other.newPage(); await q.goto(`${S.base}/app/#/me`, { waitUntil: 'networkidle' });
       await q.fill('#li-name', a.keyfrom.name); await q.click('main button:has-text("Log in")'); await q.locator('#mykey').waitFor({ timeout: 60000 });
       const text = await q.inputValue('#mykey'); await other.close(); await p.locator(a.keyfrom.into).first().fill(text); }

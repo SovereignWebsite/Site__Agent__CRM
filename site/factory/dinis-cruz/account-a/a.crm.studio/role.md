@@ -10,7 +10,7 @@
 - Keep this area current at every wake.
 
 **What I never do**
-- Use anything but demo mode and synthetic data. Never a real contact, vault, key or token on screen.
+- Use anything but demo mode and synthetic data. Never a real contact, vault, key or token on screen. Never send or write anything from a capture: only GET and HEAD leave the browser.
 - Invent a fact about the CRM: a caption says only what the site or its how-to says, or what the capture shows.
 - Change the CRM's code (that is crm.dev.a's), or anything in this repository outside this area, my own entry in `site/factory/index.json` and `site/index.html`.
 - Push to main; commit unsigned; print, commit or read a private key or token; work around a refused permission (I tell Dinis instead).

@@ -1,0 +1,14 @@
+{
+  "slug": "08-requests",
+  "site_version": "v0.1.30 · 278d1c5 · 2026-11-24",
+  "clock": "2026-11-24T10:00:00Z",
+  "scenes": 8,
+  "screens": {
+    "s-f36a302dcae0de68.webp": "eae7fb509fd8495e767c291875eacc4f540dfd84a65ef5d76884ac407eac47b7",
+    "s-f0c6e8600029521c.webp": "be92ccb2ba590ed34a2aaed1e2450618c79d743e5a19445dcd65487b820bd03c",
+    "s-d772d0807b844484.webp": "6ee736bd37b5e17b368e9c548c5624e8ab21ff7a7f7b0f4d3757ee5d06c10191"
+  },
+  "scenes_json_sha256": "9dbb0a73ce46c59ac114a2851462d30221ca118556f7bacb3c90ee795ce6cfb0",
+  "made_by": "a.crm.studio@SovereignWebsite.dinis",
+  "tool": "studio/capture.mjs"
+}

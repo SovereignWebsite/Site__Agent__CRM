@@ -1,6 +1,6 @@
 {
   "slug": "07-verified-keys",
-  "site_version": "v0.1.28 · ecdcdae · 2026-11-24",
+  "site_version": "v0.1.29 · 8067a4a · 2026-11-24",
   "clock": "2026-11-24T10:00:00Z",
   "scenes": 9,
   "screens": {
@@ -10,9 +10,9 @@
     "s-de64bbf5f2f35b09.webp": "d55c36fd146ececd973941d30e8f721165b50116d48554d2281d239f0d054576",
     "s-7a161c9da22b0397.webp": "a6c239af64b597a25c7ee1ac06ba0f9f4748841f2f3f6723f89058ef10e79737",
     "s-0bed9ef0018dc02a.webp": "90ec868902b3d9fbfa4a75e9b12a61741c6df2cb4ff3ebb3d8ea52c7b19ad7da",
-    "s-f71ba3ce78f74a2f.webp": "00c878e3af1e1e32a4989b608a40016a6eb8297e1caec4afeb767db5a9ca4cd6"
+    "s-d6cc3ffbb2765e7c.webp": "6c0bcc93417523d5da1c3a489f9d173b6770760ecbe21bb6718451e46b62f8ee"
   },
-  "scenes_json_sha256": "8b36bbb8d50ced9fc03161ed3128984a790541fc74172eb5891517e7405d4667",
+  "scenes_json_sha256": "8bd53c3691886bf33352dee585e010c1bb5d37b705cb4d0a14c79ea92ccf1e37",
   "made_by": "a.crm.studio@SovereignWebsite.dinis",
   "tool": "studio/capture.mjs"
 }

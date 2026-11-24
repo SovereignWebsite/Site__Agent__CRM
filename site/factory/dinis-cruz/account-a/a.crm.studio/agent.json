@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T17:06Z",
+  "updated": "2026-11-24T17:11Z",
   "waiting_on": [
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
@@ -38,31 +38,35 @@
   "videos": [
     {
       "slug": "01-what-it-is",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "02-today-and-actions",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "03-follow-ups",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "04-import",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "05-agents-in-parallel",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "06-log-in",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
     },
     {
       "slug": "07-verified-keys",
-      "site_version": "v0.1.28 ecdcdae"
+      "site_version": "v0.1.29 8067a4a"
+    },
+    {
+      "slug": "08-requests",
+      "site_version": "v0.1.29 8067a4a"
     }
   ],
   "wake": "a.crm.studio wake (trig_01W1DzpdeT36c1wYEao9Zasd), set by a.maestro",
