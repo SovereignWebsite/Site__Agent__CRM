@@ -30,9 +30,9 @@
     const n = data.scenes.length;
     root.innerHTML = '';
     const top = el('div', 'p-top', `<span class="mark"></span><span>${esc(data.title)}</span><span class="chip">${esc(data.presenter)} · synthetic presenter</span>`);
-    const stage = el('div', 'p-stage'); const screen = el('div', 'p-screen'); const box = el('div', 'p-box'); const card = el('div', 'p-card');
-    const imgs = {}; for (const s of data.scenes) if (s.screen && !imgs[s.screen]) { const i = el('img'); i.src = base + s.screen; i.alt = ''; i.decoding = 'async'; imgs[s.screen] = i; screen.append(i); }
-    screen.append(box, card);
+    const stage = el('div', 'p-stage'); const screen = el('div', 'p-screen'); const view = el('div', 'p-view'); const box = el('div', 'p-box'); const card = el('div', 'p-card');
+    const imgs = {}; for (const s of data.scenes) if (s.screen && !imgs[s.screen]) { const i = el('img'); i.src = base + s.screen; i.alt = ''; i.decoding = 'async'; imgs[s.screen] = i; view.append(i); }
+    view.append(box); screen.append(view, card);
     const pres = el('div', 'p-presenter', BOT + `<span class="who">${esc(data.presenter)}: synthetic, made by code</span>`);
     stage.append(screen, pres);
     const cap = el('div', 'p-caption'); cap.setAttribute('aria-live', 'polite');
@@ -53,7 +53,8 @@
       card.classList.toggle('on', !!s.card);
       if (s.card) card.innerHTML = `<div class="kicker">CRM · explainer</div><h2>${esc(s.card.title)}</h2><p>${esc(s.card.sub)}</p>${s.card.foot ? `<p class="foot">${esc(s.card.foot)}</p>` : ''}`;
       if (s.box) { const W = data.width, H = data.height; Object.assign(box.style, { left: `${s.box.x / W * 100}%`, top: `${s.box.y / H * 100}%`, width: `${s.box.w / W * 100}%`, height: `${s.box.h / H * 100}%` });
-        const img = imgs[s.screen]; img.style.setProperty('--ox', `${(s.box.x + s.box.w / 2) / W * 100}%`); img.style.setProperty('--oy', `${(s.box.y + s.box.h / 2) / H * 100}%`); img.style.setProperty('--zoom', s.box.w * s.box.h < W * H * 0.2 ? '1.06' : '1'); }
+        // A small mark gets a gentle zoom; the screen and its frame zoom together, so the frame stays on its mark.
+        view.style.transformOrigin = `${(s.box.x + s.box.w / 2) / W * 100}% ${(s.box.y + s.box.h / 2) / H * 100}%`; view.style.transform = s.box.w * s.box.h < W * H * 0.2 ? 'scale(1.06)' : 'scale(1)'; } else view.style.transform = 'scale(1)';
       box.classList.toggle('on', !!s.box);
       const words = s.caption.split(/(\s+)/);
       cap.innerHTML = `<span class="n">${k + 1} / ${n}</span><span class="t">${words.map((w) => /^\s+$/.test(w) ? w : `<span class="w">${esc(w)}</span>`).join('')}</span>`;
