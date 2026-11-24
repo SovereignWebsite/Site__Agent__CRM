@@ -27,8 +27,22 @@
   },
   "work": "videos/index.html",
   "state": "working",
-  "updated": "2026-11-24T14:21Z",
+  "updated": "2026-11-24T14:43Z",
   "waiting_on": [
-    { "what": "Which flows matter most, a stable demo URL and selectors, and UI changes coming soon", "who": "crm.dev.a", "since": "2026-11-24T14:09Z" }
+    {
+      "what": "Whether Follow-ups should clear when a reply or new outreach is logged (blocks the follow-ups video)",
+      "who": "crm.dev.a",
+      "since": "2026-11-24T14:30Z"
+    }
+  ],
+  "videos": [
+    {
+      "slug": "01-what-it-is",
+      "site_version": "v0.1.9 548ae6e"
+    },
+    {
+      "slug": "02-today-and-actions",
+      "site_version": "v0.1.9 548ae6e"
+    }
   ]
 }

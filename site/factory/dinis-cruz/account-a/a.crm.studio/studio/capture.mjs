@@ -40,11 +40,16 @@ const card = (h1, sub, foot) => `<!doctype html><html lang="en-GB"><meta charset
 <h1 style="font-size:60px;line-height:1.1;margin:18px 0">${h1}</h1><p style="font-size:28px;line-height:1.4;color:#a8a69e;margin:0">${sub}</p>
 <p style="font-size:18px;color:#a8a69e;margin-top:48px">${foot || ''}</p></div></body></html>`;
 
-const b = await chromium.launch();
-const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' });
+const b = await chromium.launch({ args: ['--lang=en-GB'], env: { ...process.env, LANG: 'en_GB.UTF-8', LANGUAGE: 'en_GB' } }); // dates as 23/11/2026, not 11/23/2026
+const ctx = await b.newContext({ // reducedMotion also stops smooth scrolling in most pages
+  viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' });
 await ctx.route('**/*', (r) => { const u = new URL(r.request().url()); return (u.protocol === 'data:' || ALLOW.has(u.host)) ? r.continue() : r.abort(); });
 const p = await ctx.newPage();
 await p.clock.setFixedTime(new Date(S.clock || '2026-11-24T10:00:00Z'));
+// Seeded randomness, so ids the app makes for demo writes (a-xxxxxxxx) are the same in every capture.
+await p.addInitScript((seed) => { let s = seed >>> 0; const r = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  Math.random = r; crypto.getRandomValues = (a) => { const u = new Uint8Array(a.buffer, a.byteOffset, a.byteLength); for (let i = 0; i < u.length; i++) u[i] = Math.floor(r() * 256); return a; };
+  crypto.randomUUID = () => '00000000-0000-4000-8000-' + String(Math.floor(r() * 1e12)).padStart(12, '0'); }, S.seed ?? 42);
 let version = null;
 const total = S.scenes.length;
 for (const [i, sc] of S.scenes.entries()) {
@@ -52,23 +57,33 @@ for (const [i, sc] of S.scenes.entries()) {
   if (sc.card) await p.setContent(card(sc.card.title, sc.card.sub, sc.card.foot));
   for (const a of sc.do || []) {
     if (a.goto) { await p.goto(S.base + a.goto, { waitUntil: 'networkidle' }); }
+    if (a.hash) await p.evaluate((h) => { location.hash = h; }, a.hash); // in-page: keeps the demo's writes in this tab
     if (a.click) await p.locator(a.click).first().click();
     if (a.fill) await p.locator(a.fill[0]).first().fill(a.fill[1]);
     if (a.select) await p.locator(a.select[0]).first().selectOption(a.select[1]);
     if (a.scroll) await p.locator(a.scroll).first().scrollIntoViewIfNeeded();
     if (a.top) await p.evaluate(() => window.scrollTo(0, 0));
-    await p.waitForTimeout(400);
+    await p.evaluate(() => document.activeElement?.blur?.()); // no caret or selection in a frame
+    await p.waitForLoadState('networkidle'); await p.waitForTimeout(400);
   }
   if (!sc.card && !version) version = await p.evaluate(() => (document.body.innerText.match(/v\d+\.\d+\.\d+ · [0-9a-f]{7} · \d{4}-\d\d-\d\d/) || [null])[0]);
   let box = null;
   if (sc.mark) { const l = p.locator(sc.mark).first(); if (!sc.stay) await l.scrollIntoViewIfNeeded();
-    if (sc.scroll_by) await p.evaluate((y) => window.scrollBy(0, y), sc.scroll_by);
-    const r = await l.boundingBox(); if (!r) throw new Error(`scene ${i + 1}: nothing to mark at ${sc.mark}`);
+    if (sc.scroll_by) await p.evaluate((y) => window.scrollBy({ top: y, behavior: 'instant' }), sc.scroll_by);
+    // Wait until scrolling has stopped, then mark whole pixels, so the frame is the same in every capture.
+    for (let last = -1, n = 0; n < 40; n++) { const y = await p.evaluate(() => window.scrollY); if (y === last) break; last = y; await p.waitForTimeout(100); }
+    const r0 = await l.boundingBox(); const r = r0 && { x: Math.round(r0.x), y: Math.round(r0.y), width: Math.round(r0.width), height: Math.round(r0.height) }; if (!r) throw new Error(`scene ${i + 1}: nothing to mark at ${sc.mark}`);
     // A mark taller than the view is cut at the caption bar, so its frame stays visible.
     const y = Math.max(r.y, 8), bottom = Math.min(r.y + r.height, H - 130);
     box = { x: r.x, y, w: r.width, h: bottom - y }; }
   await p.evaluate(OVERLAY, { caption: sc.caption, step: i + 1, total, title: sc.card ? null : S.title, box });
-  await p.screenshot({ path: join(frames, `${String(i).padStart(3, '0')}.png`) });
+  // Settle: shoot until two shots in a row match, so a frame never catches the page mid-render.
+  // The app may move focus after it renders (a caret blinks, a focus ring shows), so blur before every shot.
+  const still = async () => { await p.evaluate(() => document.activeElement?.blur?.()); return p.screenshot({ caret: 'hide', animations: 'disabled' }); };
+  let shot = await still(), tries = 0;
+  for (;;) { await p.waitForTimeout(300); const next = await still(); if (next.equals(shot)) break; shot = next;
+    if (++tries > 20) throw new Error(`scene ${i + 1}: the page never settled`); }
+  writeFileSync(join(frames, `${String(i).padStart(3, '0')}.png`), shot);
   if (i === (S.poster ?? 0)) await p.screenshot({ path: join(dir, 'poster.jpg'), type: 'jpeg', quality: 80 });
 }
 await b.close();
@@ -92,5 +107,5 @@ const frameSha = S.scenes.map((_, i) => sha(join(frames, `${String(i).padStart(3
 writeFileSync(join(dir, 'manifest.json'), JSON.stringify({ slug: S.slug, title: S.title, site: S.base, site_version: version, clock: S.clock,
   seconds: +at.toFixed(3), scenes: total, frames_sha256: frameSha, video_sha256: sha(join(dir, 'video.mp4')),
   made_by: 'a.crm.studio@SovereignWebsite.dinis', tool: 'studio/capture.mjs' }, null, 2) + '\n');
-rmSync(frames, { recursive: true, force: true });
+if (!process.env.KEEP_FRAMES) rmSync(frames, { recursive: true, force: true });
 console.log(`${S.slug}: ${total} scenes, ${at.toFixed(1)} s, site ${version}`);
