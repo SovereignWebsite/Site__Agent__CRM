@@ -1,5 +1,22 @@
 {
   "about": "Each agent of this type and the path to its agent.json. Every agent adds its own entry when it starts.",
   "site": "crm.agents.sovereignweb.site",
-  "owners": []
+  "owners": [
+    {
+      "owner": "dinis-cruz",
+      "accounts": [
+        {
+          "account": "account-a",
+          "agents": [
+            {
+              "agent": "a.crm.studio@SovereignWebsite.dinis",
+              "role": "a.crm.studio",
+              "agent_json": "/factory/dinis-cruz/account-a/a.crm.studio/agent.json",
+              "work": "/factory/dinis-cruz/account-a/a.crm.studio/videos/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
