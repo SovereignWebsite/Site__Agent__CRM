@@ -24,6 +24,7 @@ for (const f of readdirSync(dir)) if (/^s-[0-9a-f]+\.webp$/.test(f)) rmSync(join
 const b = await chromium.launch({ args: ['--lang=en-GB'], env: { ...process.env, LANG: 'en_GB.UTF-8', LANGUAGE: 'en_GB' } }); // dates as 23/11/2026
 const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, locale: 'en-GB', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'reduce' });
 await ctx.route('**/*', (r) => { const u = new URL(r.request().url()); return (u.protocol === 'data:' || ALLOW.has(u.host)) ? r.continue() : r.abort(); });
+if (S.permissions) await ctx.grantPermissions(S.permissions, { origin: S.base });
 const p = await ctx.newPage();
 await p.clock.setFixedTime(new Date(S.clock || '2026-11-24T10:00:00Z'));
 // Seeded randomness, so ids the app makes for demo writes (a-xxxxxxxx) are the same in every capture.
@@ -33,7 +34,11 @@ await p.addInitScript((seed) => { let s = seed >>> 0; const r = () => { s = (Mat
 
 // The app may move focus after it renders (a caret blinks, a focus ring shows), so blur before every shot,
 // and shoot until two shots in a row match, so a screen never catches the page mid-render.
-const still = async () => { await p.evaluate(() => document.activeElement?.blur?.()); return p.screenshot({ caret: 'hide', animations: 'disabled' }); };
+// A script may mask what changes every run or should not be shown (a made-up person's fresh key, its QR code):
+// the mask is a flat box drawn over those elements in the screenshot, so nothing of them is kept.
+const MASK = S.mask || [];
+const still = async () => { await p.evaluate(() => document.activeElement?.blur?.());
+  return p.screenshot({ caret: 'hide', animations: 'disabled', mask: MASK.map((m) => p.locator(m)), maskColor: '#c9cec8' }); };
 const settle = async (i) => { let shot = await still(); for (let n = 0; ; n++) { await p.waitForTimeout(300); const next = await still(); if (next.equals(shot)) return shot; shot = next;
   if (n > 20) throw new Error(`scene ${i + 1}: the page never settled`); } };
 
@@ -48,6 +53,7 @@ for (const [i, sc] of S.scenes.entries()) {
     if (a.click) await p.locator(a.click).first().click();
     if (a.fill) await p.locator(a.fill[0]).first().fill(a.fill[1]);
     if (a.select) await p.locator(a.select[0]).first().selectOption(a.select[1]);
+    if (a.wait) await p.locator(a.wait).first().waitFor({ timeout: 60000 }); // e.g. a key being made
     if (a.scroll) await p.locator(a.scroll).first().scrollIntoViewIfNeeded();
     if (a.top) await p.evaluate(() => window.scrollTo(0, 0));
     await p.waitForLoadState('networkidle'); await p.waitForTimeout(400);

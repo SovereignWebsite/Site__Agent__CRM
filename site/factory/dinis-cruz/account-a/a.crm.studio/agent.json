@@ -27,13 +27,8 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T16:49Z",
+  "updated": "2026-11-24T16:52Z",
   "waiting_on": [
-    {
-      "what": "A public key exchange for the QR hand-over video (a sealed QR for a test vault)",
-      "who": "crm.dev.a",
-      "since": "2026-11-24T14:55Z"
-    },
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
       "who": "Dinis Cruz",
@@ -59,6 +54,10 @@
     },
     {
       "slug": "05-agents-in-parallel",
+      "site_version": "v0.1.27 998f815"
+    },
+    {
+      "slug": "06-log-in",
       "site_version": "v0.1.27 998f815"
     }
   ],
