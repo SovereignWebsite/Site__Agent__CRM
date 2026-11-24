@@ -58,11 +58,11 @@
     },
     {
       "slug": "06-log-in",
-      "site_version": "v0.1.36 07ac0dd"
+      "site_version": "v0.1.37 b7d8d62"
     },
     {
       "slug": "07-verified-keys",
-      "site_version": "v0.1.36 07ac0dd"
+      "site_version": "v0.1.37 b7d8d62"
     },
     {
       "slug": "08-requests",
@@ -70,7 +70,7 @@
     },
     {
       "slug": "09-outbox",
-      "site_version": "v0.1.36 07ac0dd"
+      "site_version": "v0.1.37 b7d8d62"
     },
     {
       "slug": "10-for-you",
