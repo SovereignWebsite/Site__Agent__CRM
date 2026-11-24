@@ -1,0 +1,17 @@
+{
+  "agent": "a.crm.studio@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_018yvwtLdrmYA9n9KshCtiYv",
+  "status": "active",
+  "fingerprint": "sha256:b3f2de02b96d76dd",
+  "signing_fingerprint": "sha256:91255cd04b010447",
+  "ssh": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJfSvqgVETk+tre0m4ZgZwI87Br5y5PMVPUVhkhDwHyhzq7bWnShxS2NFjCR95Yp6hCUBIHUOzmS8p27tWL/ADw=",
+  "bundle": {
+    "v": 1,
+    "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAmJPhnod9N9XtK+nxHYdd\ncmI4iRLAoY53Lsb7Q9asDNNJKKUgNUeomvS/Zmw4tzqxuZv/JguV5W+8zkU6FQt+\n9V43pX6ku6uBu3dD/WNmdi3yzEMF9/r72oeOqElQ84xaA9Lxt9bZU3cT4+yVJadD\nHRhKhrsyYPx68+GglPMrXDwbensj12Yr4D5DjwJTx1m9vFCCX8vGtDFlE2M8ijY6\nTkSJQawLFATGOFkiSyNcNxUemyMCCt56awx5YGsu01Ln7HlxKnCeAYniC/eXNn3I\nt7YwC/wcrKKK/hUAloe9Ke1zrOTPS6Z++njUvABQNkvv1LRZsLyY20Sa2pDl+5jO\nMSEgm6l1KWzri6RiSXEn5JiIvl2IkaxsppKLncPLxVNchlzfVpubqLX+NYRXmuox\nZa7MhtyyIuDTDcGe4c8Iy1cUsJLp3nfdRr+N++hs0m4g4+Ot+ZlOLcbYtJWHQV5u\nH0GB6g/LEoAXGAbKJO+Rgun6l/7AVZ6xbqD+izB9wmqvK5ym5dh1g7uDpOu1Ivvm\nlghSqRolihuxiuqEbSANDqvooN/MnEE/JCGLQcqx4dGKsl3Gxo4mFHp7qnmV/V0Y\nbPg04o1urvZZE3ZDZou+AC262irf/9ltv3yP7HFcSzu4pNpstlHjsxDrRpChdhxT\n1lc0WHh4Jc4HrQAvaOPObrkCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+    "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEl9K+qBUROT62t7SbhmBnAjzsGvnL\nk8xU9RWGSEPAfKHOrttadKHFLY0WMJH3linqEJQEgdQ7OZLynbu1Yv8APA==\n-----END PUBLIC KEY-----\n",
+    "label": "a-crm-studio-sovereignwebsite",
+    "fingerprint": "sha256:b3f2de02b96d76dd",
+    "signing_fingerprint": "sha256:91255cd04b010447"
+  },
+  "how": "Made by the agent in its own session with sgit pki keygen (tools/setup-signing.sh). Only the public half is here. A session key: it ends with its session."
+}
