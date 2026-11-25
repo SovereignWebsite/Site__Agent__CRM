@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-24T20:51Z",
+  "updated": "2026-11-25T00:51Z",
   "waiting_on": [
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
@@ -74,7 +74,7 @@
     },
     {
       "slug": "10-for-you",
-      "site_version": "v0.1.44 ed7f471"
+      "site_version": "v0.1.50 244486c"
     },
     {
       "slug": "11-add-people",
