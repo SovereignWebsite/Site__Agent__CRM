@@ -26,18 +26,23 @@
     "a.maestro": "session_018yvwtLiem1AqdA1YkKse4h (routing, wake)"
   },
   "work": "videos/ (one player page per explainer)",
-  "state": "working",
-  "updated": "2026-11-25T02:52Z",
+  "state": "handing over",
+  "updated": "2026-11-25T18:44Z",
   "waiting_on": [
     {
-      "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
+      "what": "Confirmation in his own session that explainers play in the browser, not as MP4 (relayed by crm.dev.a, 24 Nov 14:40)",
       "who": "Dinis Cruz",
-      "since": "2026-11-24T15:07Z"
+      "since": "2026-11-24T14:55Z"
     },
     {
-      "what": "Dinis's footage (and where approved cuts may live) for the narrated 'Dinis builds it' cuts; plan in plan-narrated-cut.md",
-      "who": "Dinis Cruz, via a.maestro",
-      "since": "2026-11-25T01:47Z"
+      "what": "Recorded voice: the offline TTS install was refused by my permission check; allow it, or name a voice service",
+      "who": "Dinis Cruz",
+      "since": "2026-11-24T15:10Z"
+    },
+    {
+      "what": "Footage, where approved cuts may live, and a yes to the narrated-cut format (plan-narrated-cut.md)",
+      "who": "Dinis Cruz",
+      "since": "2026-11-25T01:50Z"
     }
   ],
   "videos": [
@@ -93,5 +98,30 @@
       "from": "2026-11-24T15:15Z",
       "handed_over_by": "crm.dev.a (the site's keeper), on a.maestro's recommendation, after Dinis asked for a proper landing"
     }
-  ]
+  ],
+  "handover": {
+    "to": "cl-2.crm.studio@SovereignWebsite.dinis (account B)",
+    "brief": "https://github.com/SovereignWebsite/Site__Agent__Maestro__Claude__1/blob/dev/site/factory/dinis-cruz/cl-1/handover/2026-11-25-moves.md",
+    "asked_by": "cl-1.maestro (formerly a.maestro), at Dinis's word, 25 Nov 18:43 UTC",
+    "restart": "restart.md"
+  },
+  "holds": {
+    "vault_or_lane_keys": "none",
+    "signing_key": {
+      "fingerprint": "sha256:b3f2de02b96d76dd",
+      "signing_fingerprint": "sha256:91255cd04b010447",
+      "note": "a session key: it ends with this session; the new session makes and publishes its own"
+    },
+    "pushes_to": [
+      "SovereignWebsite/Site__Agent__CRM (dev): this area, my index.json entry, site/index.html"
+    ],
+    "scheduled_wakes": [
+      {
+        "name": "a.crm.studio wake",
+        "trigger": "trig_01W1DzpdeT36c1wYEao9Zasd",
+        "schedule": "every 2 h, at :47 UTC (set by a.maestro)"
+      }
+    ],
+    "throwaway": "a browser profile for video 10 (For you) in this session's scratchpad: it ends with the session"
+  }
 }

@@ -1,5 +1,12 @@
 # a.crm.studio: how a new session takes over
 
+## Taking over (25 Nov 2026: moving to account B as cl-2.crm.studio@SovereignWebsite.dinis)
+- Repositories to attach: SovereignWebsite/Site__Agent__CRM (this site; push to dev). Read-only, for facts: SovereignWebsite/Site__Tool__CRM, AgentiCCells/AgentiCCells__Cell__Email (branch work/crm.dev.a), SovereignWebsite/Site__Agent__Design.
+- Wake: the old one is "a.crm.studio wake" (trig_01W1DzpdeT36c1wYEao9Zasd, every 2 h at :47 UTC, set by a.maestro); account B's maestro sets the new one. At a wake: pull, read messages from crm.dev.a, recapture only what the app changed, publish, keep this area current; nothing new: one line, push nothing.
+- First steps: make and publish your own key (step 2 below); if your name differs, decide with your maestro whether to keep this area or start site/factory/dinis-cruz/account-b/<you>/ and point this one to it; tell crm.dev.a (it mirrors the videos) and a.crm.design your session id.
+- Learnings: [learnings.md](learnings.md).
+
+
 1. Read the repository's `CLAUDE.md` and `START.md`, then this area: `role.md`, `now.md`, `agent.json`.
 2. Make your key: `bash tools/setup-signing.sh a.crm.studio@SovereignWebsite.dinis <your-session-url>`. The old key ends with its session: publish yours with a first commit of only `site/keys/a.crm.studio.json`, then update `key` in `agent.json`.
 3. Tools: Chromium with Playwright (pre-installed in cloud sessions) and ffmpeg. From this folder:
