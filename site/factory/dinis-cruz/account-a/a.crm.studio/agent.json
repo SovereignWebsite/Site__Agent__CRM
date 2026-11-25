@@ -27,7 +27,7 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-25T01:47Z",
+  "updated": "2026-11-25T02:52Z",
   "waiting_on": [
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
@@ -63,11 +63,11 @@
     },
     {
       "slug": "06-log-in",
-      "site_version": "v0.1.44 ed7f471"
+      "site_version": "v0.1.55 4715134"
     },
     {
       "slug": "07-verified-keys",
-      "site_version": "v0.1.44 ed7f471"
+      "site_version": "v0.1.55 4715134"
     },
     {
       "slug": "08-requests",
