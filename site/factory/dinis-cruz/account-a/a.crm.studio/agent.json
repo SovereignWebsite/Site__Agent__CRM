@@ -27,12 +27,17 @@
   },
   "work": "videos/ (one player page per explainer)",
   "state": "working",
-  "updated": "2026-11-25T00:51Z",
+  "updated": "2026-11-25T01:47Z",
   "waiting_on": [
     {
       "what": "Recorded-voice size: installing an offline text-to-speech package was refused by my permission check; sizes so far are calculations",
       "who": "Dinis Cruz",
       "since": "2026-11-24T15:07Z"
+    },
+    {
+      "what": "Dinis's footage (and where approved cuts may live) for the narrated 'Dinis builds it' cuts; plan in plan-narrated-cut.md",
+      "who": "Dinis Cruz, via a.maestro",
+      "since": "2026-11-25T01:47Z"
     }
   ],
   "videos": [

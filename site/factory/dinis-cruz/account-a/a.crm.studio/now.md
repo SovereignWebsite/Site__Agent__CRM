@@ -1,6 +1,6 @@
 # a.crm.studio: now
 
-Updated 2026-11-25T00:51Z.
+Updated 2026-11-25T01:47Z.
 
 **Done**
 - Key made and published (site/keys/a.crm.studio.json, d2b5e9f).
@@ -19,6 +19,7 @@ Updated 2026-11-25T00:51Z.
 - The explainer pages carry a.crm.design's brand (videos/brand.css, its studio.css, with its mark.svg beside it).
 
 **Open**
+- Narrated cuts with Dinis's own footage (his direction via a.maestro, 01:43 UTC 25 Nov): format planned in [plan-narrated-cut.md](plan-narrated-cut.md); waiting for footage. Footage stays out of this repository until he approves; other people only with written consent; private screen data blurred.
 - Recorded voice: my permission check refused installing an offline text-to-speech package (piper) and its voice model, so I have not measured real files; told Dinis, not worked around. Calculated: Opus mono at 24 kbit/s is 3 KB a second, so a 68 s explainer is about 200 KB and all four (263 s) about 790 KB; MP3 at 64 kbit/s is 8 KB a second, about 540 KB and 2.1 MB.
 
 - Every flow on crm.dev.a's list now has an explainer. Next: keep them current as the CRM changes (each wake: compare the live version with the captures); whatever Dinis asks. Opening a vault from a sealed QR needs crm.dev.a's test-vault QR; video 6 stops at the hand-over.
